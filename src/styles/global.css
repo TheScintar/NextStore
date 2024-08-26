@@ -1,0 +1,31 @@
+
+body {
+  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+header {
+  background-color: #fff;
+  padding: 0 20px;
+}
+
+
+
+main {
+  padding: 20px;
+  font-family: "Raleway", sans-serif;
+  margin: 20px auto;
+}
+
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+}

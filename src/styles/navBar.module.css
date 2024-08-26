@@ -1,0 +1,139 @@
+
+.navbar{
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  padding: 0;
+}
+
+
+.navbar a {
+    color: black;
+    font-family: "Raleway", sans-serif;
+    text-decoration: none; 
+    margin: 0 15px; 
+  }
+  
+.logo{
+    font-size: 25px;
+    font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  line-height: 0;
+}
+
+.auth {
+    display: flex;
+    align-items: center; 
+}
+
+.auth a {
+    display: flex;
+    align-items: center; /* Это поможет выровнять текст и иконку внутри каждой ссылки */
+    margin: 0 5px; /* Добавим небольшой отступ между элементами */
+}
+
+.mobileNavbar{
+    display: none;
+}
+.mobileMenu{
+    display: none;
+}
+.menuButton{
+    display: none;
+}
+.closeButton{
+    display: none;
+}
+
+
+@media(max-width: 576px) {
+    .mobileNavbar{
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .mobileAuth a{
+        color: black;
+        font-family: "Raleway", sans-serif;
+        text-decoration: none; 
+        margin: 0 15px; 
+    }
+    .navbar {
+          color: black; 
+          position: fixed;
+          top: 0;
+          left: -225px;
+          background-color: #fff;
+          display: flex;
+          justify-content: start;
+          flex-direction: column;
+          width: 220px;
+          height: 100%;
+          border: 2px solid black;
+          border-radius: 0 15px 15px 0;
+          transition: transform 0.3s linear; 
+    }
+
+    .navbar.active {
+        transform: translateX(225px); 
+        
+    }
+    .navbar a{
+        color: black; 
+    }
+    
+
+    .logo{
+        margin-top: 15px;
+        width: 100%;
+        display: flex;
+        
+        align-items: center;
+        color: black; 
+    }
+
+    .logo h1{
+        
+        font-size: 25px;
+    }
+    
+
+    .mobileLogo{
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+
+    .mobileLogo a{
+        text-decoration: none;
+    }
+    .auth{
+        display: none;
+    }
+    .menu{
+        display: none;
+    }
+    .menuButton{
+        display: block;
+        padding: 0;
+        border: 0;
+        width: 25px;
+        height: 25px;
+        margin-right: 15px;
+        background-color: transparent;
+    }
+    .closeButton{
+        display: block;
+        padding: 0;
+        border: 0;
+        width: 25px;
+        height: 25px;
+        margin-left: 15px;
+        background-color: transparent;
+    }
+}
