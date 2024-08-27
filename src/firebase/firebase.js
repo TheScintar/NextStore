@@ -17,17 +17,18 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 
-export const getProducts = async () => {
-  const productsCollection = collection(db, 'products');
+export const getProducts = async (category) => {
+  console.log(category)
+  const productsCollection = collection(db, `${category}`);
   const productsSnapshot = await getDocs(productsCollection);
   return productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 
 
-export const getProductById = async (productId) => {
+export const getProductById = async (category, productId) => {
   try {
-    console.log(productId)
-    const productDoc = doc(db, 'products', productId); 
+    console.log('Category:', category, 'Product ID:', productId);
+    const productDoc = doc(db, category, productId);
     const docSnap = await getDoc(productDoc);
 
     if (docSnap.exists()) {
@@ -41,3 +42,5 @@ export const getProductById = async (productId) => {
     return null;
   }
 };
+
+

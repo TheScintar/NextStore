@@ -1,0 +1,43 @@
+.filterContainer {
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.filterContainer h3 {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.filterSection {
+    margin-bottom: 16px;
+}
+
+.filterSection label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.filterSection input,
+.filterSection select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.filterSection input:focus,
+.filterSection select:focus {
+    border-color: #007bff;
+}

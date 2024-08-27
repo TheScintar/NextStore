@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import styles from '../styles/navBar.module.css'; // импорт стилей как объект
+import styles from '../styles/navBar.module.css';
 import Image from 'next/image';
 import menuIcon from '../../public/menu.svg';
 import closeIcon from '../../public/close.svg'

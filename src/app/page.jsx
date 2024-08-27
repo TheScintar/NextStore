@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import ProductList from '../components/ProductList';
+
 import { getProducts } from '../firebase/firebase'; 
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div>
-      <ProductList products={products} />
+      
     </div>
   );
 };

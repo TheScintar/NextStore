@@ -2,31 +2,33 @@
 
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { getProductById } from '../../firebase/firebase';
+import { getProductById } from '../../../firebase/firebase';
+import { fetchProduct } from '../../../API/productAPI'; 
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const path = usePathname();
-  const productId = path;
+  
+ 
+  const [category, productId] = path.split('/').slice(-2);
 
   useEffect(() => {
-    if (productId) {
-      const fetchProduct = async () => {
+      if (category && productId) {
+      fetchProduct(category, productId).then((fetchedProduct) => {
         try {
-          const fetchedProduct = await getProductById(productId);
-          setProduct(fetchedProduct);
-        } catch (err) {
-          setError('Failed to fetch product');
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchProduct();
+            setProduct(fetchedProduct);
+          } catch (err) {
+            setError('Failed to fetch product');
+          } finally {
+            setLoading(false);
+          }
+      });
     }
-  }, [productId]);
+    
+      
+  }, [category, productId]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
@@ -34,10 +36,10 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <h1>{product.name}</h1>
+      <h1>{product.title}</h1>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
-      {product.imageUrl && <img src={product.imageUrl} alt={product.name} />}
+      {product.imageURL && <img src={product.imageURL} alt={product.title} />}
     </div>
   );
 };
