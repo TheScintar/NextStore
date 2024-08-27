@@ -17,8 +17,8 @@
   }
   
 .logo{
-    font-size: 25px;
-    font-family: "Raleway", sans-serif;
+  font-size: 25px;
+  font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
@@ -32,8 +32,8 @@
 
 .auth a {
     display: flex;
-    align-items: center; /* Это поможет выровнять текст и иконку внутри каждой ссылки */
-    margin: 0 5px; /* Добавим небольшой отступ между элементами */
+    align-items: center; 
+    margin: 0 5px; 
 }
 
 .mobileNavbar{

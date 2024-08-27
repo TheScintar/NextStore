@@ -41,3 +41,8 @@
 .filterSection select:focus {
     border-color: #007bff;
 }  
+
+
+@media(max-width: 768px) {
+    
+}

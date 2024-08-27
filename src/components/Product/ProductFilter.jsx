@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/filter.module.css';
-import { fetchBrandsFromProducts } from '../API/productAPI';
+import styles from '../../styles/filter.module.css';
+import { fetchBrandsFromProducts } from '../../API/productAPI';
 
 const ProductFilter = ({ onFilterChange }) => {
   const [brands, setBrands] = useState([]);
@@ -15,18 +15,16 @@ const ProductFilter = ({ onFilterChange }) => {
 
   useEffect(() => {
     onFilterChange({ priceRange, selectedBrand });
-  }, [brands, priceRange, selectedBrand]);
+  }, [priceRange, selectedBrand]);
 
   const handlePriceChange = (e, index) => {
     const newRange = [...priceRange];
     newRange[index] = e.target.value;
     setPriceRange(newRange);
-    onFilterChange({ priceRange: newRange, selectedBrand });
   };
 
   const handleBrandChange = (e) => {
     setSelectedBrand(e.target.value);
-    onFilterChange({ priceRange, selectedBrand: e.target.value });
   };
 
   return (

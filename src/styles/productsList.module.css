@@ -1,36 +1,8 @@
-.container {
-    display: flex;
-    justify-content: center; /* Центрирование фильтра и списка продуктов */
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .productsPage {
-    display: flex;
-    flex-direction: row;
-    gap: 50px; /* Расстояние между фильтром и карточками продуктов */
-    align-items: flex-start; /* Выравнивание по верхнему краю контейнера */
-    max-width: 1400px; /* Ограничение максимальной ширины */
-    width: 100%; /* Занимает всю доступную ширину */
-    box-sizing: border-box;
-  }
-  
-  .filterSidebar {
-    flex: 0 0 300px; /* Ширина боковой панели фильтра */
-    padding-right: 20px;
-    box-sizing: border-box;
-  }
-  
   .productsList {
-    flex: 1; /* Занимает оставшееся пространство */
+    flex: 1; 
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Расстояние между карточками продуктов */
-    justify-content: center; /* Центрирование карточек продуктов */
+    gap: 20px; 
+    justify-content: center; 
     box-sizing: border-box;
   }
-  
-  .productCard {
-    
-  }
-  

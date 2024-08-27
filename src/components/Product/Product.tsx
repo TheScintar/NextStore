@@ -1,5 +1,5 @@
 import React from 'react';
-import { Product as ProductType } from '../types';
+import { Product as ProductType } from '../../types';
 
 interface ProductProps {
   product: ProductType;
