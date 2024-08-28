@@ -49,6 +49,9 @@ const Category = () => {
         <div className={styles.filterSidebar}>
           <ProductFilter onFilterChange={handleFilterChange} />
         </div>
+        <div className={styles.mobileFilterSidebar}>
+          <ProductFilter onFilterChange={handleFilterChange} />
+        </div>
         <div className={styles.productListContainer}>
           <ProductList products={filteredProducts} isLoading={isLoading} category={category} />
         </div>

@@ -30,7 +30,7 @@ const Navbar = () => {
 
         <div className={styles.mobileMenu}>
           <Link href="/">Home</Link>
-          <Link href='/'>G</Link>
+          <Link href='/'>Test</Link>
         </div>
 
         <div className={styles.auth}>

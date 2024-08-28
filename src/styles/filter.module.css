@@ -44,5 +44,21 @@
 
 
 @media(max-width: 768px) {
-    
+    .filterContainer{
+        
+            color: black; 
+            position: fixed;
+            top: 0;
+            left: -225px;
+            background-color: #fff;
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+            width: 220px;
+            height: 100%;
+            border: 2px solid black;
+            border-radius: 0 15px 15px 0;
+            transition: transform 0.3s linear; 
+      
+    }
 }
