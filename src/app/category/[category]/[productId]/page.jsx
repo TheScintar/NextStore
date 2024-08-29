@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { fetchProduct } from '../../../../API/productAPI'; 
-import styles from '../../../../styles/productDetail.module.css';
+import styles from '../../../../styles/Product/productDetail.module.css';
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);

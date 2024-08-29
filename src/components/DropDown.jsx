@@ -4,9 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import accountIcon from '../../public/account.svg';
-import menuDown from '../../public/menuDown.svg'
-import styles from '../styles/navBar.module.css';
-
+import menuDown from '../../public/menuDown.svg';
+import styles from '../styles/NavBar/navBar.module.css';
 
 const Dropdown = ({ onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,23 +25,28 @@ const Dropdown = ({ onLogout }) => {
 
   return (
     <div className={styles.dropdown} ref={menuRef}>
-        
       <button
         className={styles.accountButton}
         onClick={() => setIsOpen(!isOpen)}
       >
         <Image src={accountIcon} alt="Account icon" />
-        <Image src={menuDown} alt="menuDown"/>
+        <Image src={menuDown} alt="Menu down icon" />
       </button>
-    
+
       {isOpen && (
         <div className={styles.dropdownMenu}>
-
-            <button className={styles.dropdownItem}>
-          <p><Link href="/profile">Profile</Link></p>
-            </button>
-          <button onClick={onLogout} className={styles.dropdownItem}>
-          <p>Logout</p>
+          <Link href="/profile" className={styles.dropdownItem}>
+            Profile
+          </Link>
+          <button 
+            onClick={(e) => { 
+              e.stopPropagation(); 
+              onLogout(); 
+              setIsOpen(false); 
+            }} 
+            className={styles.dropdownItem}
+          >
+            Logout
           </button>
         </div>
       )}

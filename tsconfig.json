@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/firebase/firebase.js", "src/components/ProductList.jsx", "src/components/Cart.jsx", "src/components/SignIn.jsx", "src/app/productId/page.jsx", "src/app/page.jsx", "src/app/layout.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/firebase/firebase.js", "src/components/ProductList.jsx", "src/components/Cart.jsx", "src/components/SignIn.jsx", "src/app/productId/page.jsx", "src/app/page.jsx", "src/app/layout.jsx", "src/components/SignUp.jsx"],
   "exclude": ["node_modules"]
 }

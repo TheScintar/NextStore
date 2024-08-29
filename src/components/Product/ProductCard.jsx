@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/productCard.module.css';
+import styles from '../../styles/Product/productCard.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import cartIcon from '../../../public/cart.svg'

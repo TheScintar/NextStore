@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductCard from './ProductCard'; 
 import CardSkeleton from './CardSkeleton';
-import styles from '../../styles/productsList.module.css';
+import styles from '../../styles/Product/productsList.module.css';
 
 const ProductList = ({ category, products, isLoading, onAddToCart }) => {
   return (

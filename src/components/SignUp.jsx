@@ -23,7 +23,6 @@ const SignUp = () => {
         cart: []
       });
 
-      console.log('User registered and initial data saved in Firestore');
     } catch (err) {
       setError('Failed to sign up');
       console.error('Error signing up:', err);

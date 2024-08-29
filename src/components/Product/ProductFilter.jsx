@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../../styles/filter.module.css';
+import styles from '../../styles/Filter/filter.module.css';
 import { fetchBrandsFromProducts } from '../../API/productAPI';
 
 const ProductFilter = ({ FiltersIsOpen, onFilterChange, onApplyFilters }) => {

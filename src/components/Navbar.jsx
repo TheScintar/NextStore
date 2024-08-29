@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../styles/navBar.module.css';
+import styles from '../styles/NavBar/navBar.module.css';
 import menuIcon from '../../public/menu.svg';
 import closeIcon from '../../public/close.svg';
 import cartIcon from '../../public/cart.svg';

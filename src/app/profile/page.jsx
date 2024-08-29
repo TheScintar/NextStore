@@ -3,16 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import { auth, db } from '../../firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import styles from '../../styles/Profile/profile.module.css';
+import Address from '../../components/Profile/Address';
+import Security from '../../components/Profile/Security';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [shippingAddress, setShippingAddress] = useState({
-    street: '',
+    country: '',
     city: '',
-    state: '',
+    street: '',
+    apartment: '',
     zip: ''
   });
+  const [activeComponent, setActiveComponent] = useState('Address')
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -24,9 +29,10 @@ const Profile = () => {
         if (userDoc.exists()) {
           const data = userDoc.data();
           setShippingAddress({
-            street: data.shippingAddress?.street || '',
+            country: data.shippingAddress?.country || '',
             city: data.shippingAddress?.city || '',
-            state: data.shippingAddress?.state || '',
+            street: data.shippingAddress?.street || '',
+            apartment: data.shippingAddress?.apartment || '',
             zip: data.shippingAddress?.zip || ''
           });
         }
@@ -36,59 +42,54 @@ const Profile = () => {
       setLoading(false);
     });
 
-    // Отписка от слушателя при размонтировании компонента
     return () => unsubscribe();
   }, []);
 
   const handleUpdateProfile = async () => {
     if (!user) {
-      setError('Пользователь не авторизован');
+      setError('User not found');
       return;
     }
 
     try {
       const userDocRef = doc(db, 'users', user.uid);
       await updateDoc(userDocRef, { shippingAddress });
-      console.log('Профиль обновлен');
     } catch (err) {
-      setError('Не удалось обновить профиль');
-      console.error('Ошибка при обновлении профиля:', err);
+      setError('Failed to update profile');
+      console.error('Error updating profile:', err);
     }
   };
 
   if (loading) {
-    return <p>Загрузка...</p>; // Пока состояние загружается, можно показать индикатор загрузки
+    return <p>Loading...</p>;
   }
 
   return (
-    <div className="profile">
-      <h2>Профиль</h2>
-      {error && <p className="error">{error}</p>}
-      <input
-        type="text"
-        value={shippingAddress.street}
-        onChange={(e) => setShippingAddress({ ...shippingAddress, street: e.target.value })}
-        placeholder="Улица"
-      />
-      <input
-        type="text"
-        value={shippingAddress.city}
-        onChange={(e) => setShippingAddress({ ...shippingAddress, city: e.target.value })}
-        placeholder="Город"
-      />
-      <input
-        type="text"
-        value={shippingAddress.state}
-        onChange={(e) => setShippingAddress({ ...shippingAddress, state: e.target.value })}
-        placeholder="Штат"
-      />
-      <input
-        type="text"
-        value={shippingAddress.zip}
-        onChange={(e) => setShippingAddress({ ...shippingAddress, zip: e.target.value })}
-        placeholder="Индекс"
-      />
-      <button onClick={handleUpdateProfile}>Обновить профиль</button>
+    <div className={styles.profile}>
+      <div className={styles.menuSection}>
+        <button className={`${activeComponent == "Address" ? styles.active : ''}`} onClick={() => setActiveComponent("Address")}>
+          Address
+        </button>
+        <button className={`${activeComponent == "Security" ? styles.active : ''}`} onClick={() => setActiveComponent("Security")}>
+          Security
+        </button>
+      </div>
+      <div className={styles.addressSection}>
+        {activeComponent == 'Address' ? (
+        <Address
+          shippingAddress={shippingAddress}
+          setShippingAddress={setShippingAddress}
+          handleUpdateProfile={handleUpdateProfile}
+        />
+      ) : (
+        <Security
+          shippingAddress={shippingAddress}
+          setShippingAddress={setShippingAddress}
+          handleUpdateProfile={handleUpdateProfile}
+        />
+      )
+        }
+      </div>
     </div>
   );
 };

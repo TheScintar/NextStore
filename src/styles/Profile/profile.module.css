@@ -1,0 +1,155 @@
+.profile{
+    margin: 0 auto;
+    max-width: 1100px;
+    display: flex;
+    
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menuSection{
+    border-radius: 15px;
+    max-width: 200px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid black;
+}
+
+.menuSection button{
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding: 8px 16px;
+    font-size: 20px;
+    color: black;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    border-bottom: 2px solid black;
+    transition: font-size 0.3s;
+}
+
+.menuSection button.active{
+    font-size: 25px;
+}
+
+.menuSection button:hover{
+    font-size: 25px;
+}
+
+.addressSection{
+    width: 60%;
+    margin: 0 auto;
+}
+
+.addressSection input{
+    border-radius: 7px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.Address{
+    display: flex;
+    flex-direction: column;
+}
+
+.Address h1{
+    margin-top: 0;
+}
+.Address p{
+    margin: 0;
+}
+.ApplyButton {
+    width: 50%;
+    margin: 25px auto;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 2px solid black;
+    color: black;
+    border-radius: 4px;
+    padding: 10px 2px;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+.ApplyButton:hover {
+    color: white;
+    background-color: black;
+  }
+.ApplyButton h1{
+        
+    margin: 0;
+}
+
+@media(max-width: 880px) {
+ .profile{
+    flex-direction: column;
+ }
+ .menuSection{
+    padding: 0;
+    
+    margin: 0 auto;
+    margin-bottom: 30px;
+    flex-direction: row;
+ }
+ 
+ .menuSection button{
+    margin: 0 auto;
+    padding: 8px 13px;
+    font-size: 15px;
+    color: black;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    text-align: center;
+    
+}
+.menuSection button:first-child{
+    border-right: 2px solid black;
+}
+
+.addressSection{
+    width: 60%;
+    margin: 0 auto;
+}
+
+.addressSection input{
+    margin: 0 auto;
+    
+    border: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 15px 0;
+}
+
+.AddressItem{
+    margin: 0 auto;
+    margin-bottom: 15px;
+    width: 70%;
+}
+.AddressItem input{
+    
+    margin: 0 auto;
+}
+
+.ApplyButton {
+    width: 100%;
+    margin: 25px auto;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 2px solid black;
+    color: black;
+    border-radius: 4px;
+    padding: 10px 2px;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+}
