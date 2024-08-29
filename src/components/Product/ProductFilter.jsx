@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../../styles/filter.module.css';
 import { fetchBrandsFromProducts } from '../../API/productAPI';
 
-const ProductFilter = ({ onFilterChange }) => {
+const ProductFilter = ({ FiltersIsOpen, onFilterChange, onApplyFilters }) => {
   const [brands, setBrands] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 10000]);
   const [selectedBrand, setSelectedBrand] = useState('');
@@ -28,8 +28,8 @@ const ProductFilter = ({ onFilterChange }) => {
   };
 
   return (
-    <div className={styles.filterContainer}>
-      <h3>Filter</h3>
+    <div className={`${styles.filterContainer} ${FiltersIsOpen ? styles.active : ''}`}>
+      <h3>Filters</h3>
       <div className={styles.filterSection}>
         <label htmlFor="minPrice">Min Price</label>
         <input
@@ -58,6 +58,10 @@ const ProductFilter = ({ onFilterChange }) => {
             </option>
           ))}
         </select>
+      </div>
+
+      <div className={styles.ApplyButton} onClick={onApplyFilters}>
+        <h1>Apply</h1>
       </div>
     </div>
   );

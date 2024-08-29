@@ -1,21 +1,29 @@
-'use client';
+"use client";
 
 import React, { useState } from 'react';
-import { auth } from '../firebase/firebase';
+import { auth, db } from '../firebase/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 
-
-const SignUp: React.FC = () => {
-  
+const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
-  
   const handleSignUp = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
       
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      
+      await setDoc(doc(db, 'users', user.uid), {
+        email: user.email,
+        shippingAddress: null,  
+        cart: []
+      });
+
+      console.log('User registered and initial data saved in Firestore');
     } catch (err) {
       setError('Failed to sign up');
       console.error('Error signing up:', err);

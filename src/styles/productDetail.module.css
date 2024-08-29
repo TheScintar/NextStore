@@ -1,0 +1,80 @@
+.productContainer {
+    margin: 0 auto;
+    max-width: 1380px;
+    display: flex;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .imageSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .mainImage img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  
+  .detailsSection {
+    padding: 0 20px;
+  }
+  
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .description{
+    font-size: 20px;
+    color: #555;
+    margin: 8px 0 0;
+    line-height: 1.4;
+    max-height: 60px;
+  }
+
+  .priceAddtoCart{
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .price{
+    font-family: "Lato", sans-serif;
+    background: rgb(247, 247, 247);
+    padding: 10px;
+    width: 70%;
+    
+    border-radius: 8px;
+  }
+  .price h1{
+    font-size: 18px;
+    margin-bottom: 20px;
+    
+  }
+  
+  
+  .addToCart {
+    background-color: #ffffff;
+    color: black;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 120px;
+    height: 55px;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    
+  }
+  
+  .addToCart:hover {
+    color: white;
+    background-color: black;
+  }
+  

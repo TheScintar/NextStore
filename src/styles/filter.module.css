@@ -6,6 +6,7 @@
     width: 100%;
     max-width: 300px;
     margin-bottom: 20px;
+    
 }
 
 .filterContainer h3 {
@@ -13,10 +14,12 @@
     font-size: 18px;
     font-weight: 600;
     color: #333;
+    
 }
 
 .filterSection {
     margin-bottom: 16px;
+    
 }
 
 .filterSection label {
@@ -24,6 +27,7 @@
     margin-bottom: 8px;
     font-size: 14px;
     color: #555;
+    
 }
 
 .filterSection input,
@@ -35,6 +39,7 @@
     border-radius: 4px;
     outline: none;
     box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
 }
 
 .filterSection input:focus,
@@ -42,23 +47,52 @@
     border-color: #007bff;
 }  
 
+.ApplyButton{
+    display: none;
+}
 
-@media(max-width: 768px) {
-    .filterContainer{
+
+@media(max-width: 880px) {
+    .filterContainer {
+        border-radius: 0;
+        padding: 16px;
+        box-sizing: border-box;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
         
-            color: black; 
-            position: fixed;
-            top: 0;
-            left: -225px;
-            background-color: #fff;
-            display: flex;
-            justify-content: start;
-            flex-direction: column;
-            width: 220px;
-            height: 100%;
-            border: 2px solid black;
-            border-radius: 0 15px 15px 0;
-            transition: transform 0.3s linear; 
-      
     }
+    
+    .filterContainer.active {
+        transform: translateX(0);
+    }
+
+    .ApplyButton {
+        display: block;
+        margin: 0 auto;
+        width: 90%;
+        margin-top: 50px;
+        cursor: pointer;
+        background-color: #ffffff;
+        border: 2px solid black;
+        color: black;
+        border-radius: 4px;
+        padding: 4px 2px;
+        transition: background-color 0.3s;
+        text-align: center;
+    }
+    .ApplyButton h1{
+        
+        margin: 0;
+    }
+
+    .ApplyButton:hover {
+        color: white;
+        background-color: black;
+      }
 }

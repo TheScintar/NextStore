@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import ProductList from '../../components/Product/ProductList';
-import ProductFilter from '../../components/Product/ProductFilter'; 
-import { fetchProducts } from '../../API/productAPI';
-import styles from '../../styles/category.module.css'; 
+import ProductList from '../../../components/Product/ProductList';
+import ProductFilter from '../../../components/Product/ProductFilter'; 
+import { fetchProducts } from '../../../API/productAPI';
+import styles from '../../../styles/category.module.css'; 
+import Image from 'next/image';
+import filtersIcon from '../../../../public/filters.svg';
 
 const Category = () => {
   const [products, setProducts] = useState([]);
@@ -13,19 +15,18 @@ const Category = () => {
   const [isLoading, setIsLoading] = useState(true);
   const path = usePathname();
   const category = path.split('/').slice(-1)[0]; 
+  const [FiltersIsOpen, setFiltersIsOpen] = useState(false); 
 
   useEffect(() => {
     setIsLoading(true); 
     fetchProducts(category)
-    
-    .then((productData) => {
-      setProducts(productData);
-      setFilteredProducts(productData);  
-    })
-
-    .finally(()=>{
-      setIsLoading(false);
-    });
+      .then((productData) => {
+        setProducts(productData);
+        setFilteredProducts(productData);  
+      })
+      .finally(()=>{
+        setIsLoading(false);
+      });
   }, [category]); 
 
   const handleFilterChange = (filters) => {
@@ -43,6 +44,10 @@ const Category = () => {
     setIsLoading(false); 
   };
 
+  const handleApplyFilters = () => {
+    setFiltersIsOpen(false); // Закрытие фильтра
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.productsPage}>
@@ -50,7 +55,18 @@ const Category = () => {
           <ProductFilter onFilterChange={handleFilterChange} />
         </div>
         <div className={styles.mobileFilterSidebar}>
-          <ProductFilter onFilterChange={handleFilterChange} />
+          <div className={styles.sort}>
+            <h1>Sort</h1>
+          </div>
+          <div className={styles.filtersIcon} onClick={() => setFiltersIsOpen(!FiltersIsOpen)}>
+            <Image src={filtersIcon} alt="Filters icon" />
+            <h3>Filters</h3>
+          </div>
+          <ProductFilter 
+            FiltersIsOpen={FiltersIsOpen} 
+            onFilterChange={handleFilterChange}
+            onApplyFilters={handleApplyFilters}
+          />
         </div>
         <div className={styles.productListContainer}>
           <ProductList products={filteredProducts} isLoading={isLoading} category={category} />
