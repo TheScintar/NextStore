@@ -8,7 +8,7 @@ import menuIcon from '../../public/menu.svg';
 import closeIcon from '../../public/close.svg';
 import cartIcon from '../../public/cart.svg';
 import accountIcon from '../../public/account.svg';
-import Dropdown from './Dropdown';
+import Dropdown from './DropDown';
 import { auth } from '../firebase/firebase';
 import { signOut } from 'firebase/auth';
 
