@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Cart from '../../components/Cart';
-import { auth, db, removeFromCart } from '../../firebase/firebase'; // Импортируем функцию removeFromCart
+import Cart from '../../components/Cart/Cart';
+import { auth, db, removeFromCart } from '../../firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 const CartPage = () => {
