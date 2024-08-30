@@ -7,7 +7,7 @@ import accountIcon from '../../public/account.svg';
 import menuDown from '../../public/menuDown.svg';
 import styles from '../styles/NavBar/navBar.module.css';
 
-const Dropdown = ({ onLogout }) => {
+const Dropdown = ({ onLogout, onClose }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -23,6 +23,17 @@ const Dropdown = ({ onLogout }) => {
     };
   }, []);
 
+  const handleProfileClick = () => {
+    setIsOpen(false);
+    onClose();
+  };
+
+  const handleLogoutClick = async () => {
+    await onLogout();
+    setIsOpen(false);
+    onClose();
+  };
+
   return (
     <div className={styles.dropdown} ref={menuRef}>
       <button
@@ -30,24 +41,19 @@ const Dropdown = ({ onLogout }) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <Image src={accountIcon} alt="Account icon" />
-        <Image src={menuDown} alt="Menu down icon" />
+        <Image src={menuDown} alt="Menu down" />
       </button>
 
       {isOpen && (
         <div className={styles.dropdownMenu}>
-          <Link href="/profile" className={styles.dropdownItem}>
-            Profile
+          <Link href="/profile">
+            <div className={styles.dropdownItem} onClick={handleProfileClick}>
+              <p>Profile</p>
+            </div>
           </Link>
-          <button 
-            onClick={(e) => { 
-              e.stopPropagation(); 
-              onLogout(); 
-              setIsOpen(false); 
-            }} 
-            className={styles.dropdownItem}
-          >
-            Logout
-          </button>
+          <div className={styles.dropdownItem} onClick={handleLogoutClick}>
+            <p>Logout</p>
+          </div>
         </div>
       )}
     </div>

@@ -7,11 +7,10 @@ import styles from '../styles/NavBar/navBar.module.css';
 import menuIcon from '../../public/menu.svg';
 import closeIcon from '../../public/close.svg';
 import cartIcon from '../../public/cart.svg';
-import accountIcon from '../../public/account.svg'
+import accountIcon from '../../public/account.svg';
 import Dropdown from './Dropdown';
 import { auth } from '../firebase/firebase';
 import { signOut } from 'firebase/auth';
-
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +34,10 @@ const Navbar = () => {
     }
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <nav className={`${styles.navbar} ${isOpen ? styles.active : ''}`}>
@@ -55,15 +58,13 @@ const Navbar = () => {
         </div>
 
         <div className={styles.auth}>
-            <Link href="/cart"><Image src={cartIcon} alt="Cart icon"/></Link>
-            <Link href="/cart">Cart</Link>    
+          <Link href="/cart"><Image src={cartIcon} alt="Cart icon" /></Link>
+          <Link href="/cart">Cart</Link>
           {user ? (
-            <>
-            <Dropdown onLogout={handleLogout} />
-            </>
+            <Dropdown onLogout={handleLogout} onClose={closeMenu} />
           ) : (
             <>
-              <Link href="/signin"><Image src={accountIcon} alt="Account icon"/></Link>
+              <Link href="/signin"><Image src={accountIcon} alt="Account icon" /></Link>
               <Link href="/signin">Login</Link>
             </>
           )}
@@ -79,15 +80,14 @@ const Navbar = () => {
         </div>
 
         <div className={styles.mobileAuth}>
-          <Link href="/cart"><Image src={cartIcon} alt="Cart icon"/></Link>
+          <Link href="/cart"><Image src={cartIcon} alt="Cart icon" /></Link>
           {user ? (
-            <Dropdown onLogout={handleLogout} />
+            <Dropdown onLogout={handleLogout} onClose={closeMenu} />
           ) : (
             <>
-              <Link href="/signin"><Image src={accountIcon} alt="Account icon"/></Link>
+              <Link href="/signin"><Image src={accountIcon} alt="Account icon" /></Link>
             </>
           )}
-          
         </div>
       </div>
     </>

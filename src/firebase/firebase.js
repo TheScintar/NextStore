@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, getDocs, getDoc, doc } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, getDoc, doc, updateDoc, arrayUnion } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -27,7 +27,6 @@ export const getProducts = async (category) => {
 
 export const getProductById = async (category, productId) => {
   try {
-    console.log('Category:', category, 'Product ID:', productId);
     const productDoc = doc(db, category, productId);
     const docSnap = await getDoc(productDoc);
 
@@ -44,3 +43,20 @@ export const getProductById = async (category, productId) => {
 };
 
 
+export const addToCart = async (product) => {
+  const user = auth.currentUser;
+
+  if (user) {
+    try {
+      const userDocRef = doc(db, 'users', user.uid);
+      await updateDoc(userDocRef, {
+        cart: arrayUnion(product) // Добавляем продукт в массив корзины
+      });
+      console.log('Product added to cart');
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+    }
+  } else {
+    console.log('User is not authenticated');
+  }
+};

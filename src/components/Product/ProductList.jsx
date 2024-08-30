@@ -3,7 +3,7 @@ import ProductCard from './ProductCard';
 import CardSkeleton from './CardSkeleton';
 import styles from '../../styles/Product/productsList.module.css';
 
-const ProductList = ({ category, products, isLoading, onAddToCart }) => {
+const ProductList = ({ category, products, isLoading}) => {
   return (
     <div className={styles.productsList}>
       {isLoading ? (
@@ -14,7 +14,7 @@ const ProductList = ({ category, products, isLoading, onAddToCart }) => {
         </>
       ) : (
         products.map(product => (
-          <ProductCard key={product.id} category={category} product={product} onAddToCart={onAddToCart} className={styles.productCard} />
+          <ProductCard key={product.id} category={category} product={product} className={styles.productCard} />
         ))
       )}
     </div>
