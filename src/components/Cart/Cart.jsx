@@ -2,7 +2,7 @@
 
 import React from 'react';
 import CartItemCard from './CartItemCard';
-import styles from '../../styles/Product/productsList.module.css'; // Используем стили для списка
+import styles from '../../styles/Product/productsList.module.css';
 
 const Cart = ({ cartItems, total, onRemove }) => {
   return (

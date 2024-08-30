@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, getDocs, getDoc, doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, getDoc, doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -58,5 +58,19 @@ export const addToCart = async (product) => {
     }
   } else {
     console.log('User is not authenticated');
+  }
+};
+
+export const removeFromCart = async (productId) => {
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      const userDocRef = doc(db, 'users', user.uid);
+      await updateDoc(userDocRef, {
+        cart: arrayRemove({ id: productId }) // Удаляем объект с этим id из массива
+      });
+    } catch (error) {
+      console.error('Error removing item from cart:', error);
+    }
   }
 };

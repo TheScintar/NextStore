@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Cart from '../../components/Cart/Cart';
-import { auth, db } from '../../firebase/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import Cart from '../../components/Cart';
+import { auth, db, removeFromCart } from '../../firebase/firebase'; // Импортируем функцию removeFromCart
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState([]); 
+  const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const CartPage = () => {
 
           if (userDoc.exists()) {
             const userData = userDoc.data();
-            setCartItems(userData.cart || []); 
+            setCartItems(userData.cart || []);
           }
         } catch (error) {
           console.error('Error fetching cart items:', error);
@@ -37,8 +37,23 @@ const CartPage = () => {
 
   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
 
-  const handleRemove = (productId) => {
-    setCartItems(cartItems.filter(item => item.id !== productId));
+  const handleRemove = async (productId) => {
+    try {
+      // Удаление товара из состояния
+      const updatedCartItems = cartItems.filter(item => item.id !== productId);
+      setCartItems(updatedCartItems);
+
+      // Обновление базы данных
+      const user = auth.currentUser;
+      if (user) {
+        const userDocRef = doc(db, 'users', user.uid);
+        await updateDoc(userDocRef, {
+          cart: updatedCartItems
+        });
+      }
+    } catch (error) {
+      console.error('Error removing item from cart:', error);
+    }
   };
 
   if (loading) {
