@@ -1,4 +1,4 @@
-## Try it on you ([https://polite-sfogliatella-58ade3.netlify.app/](https://storenext.netlify.app/))
+## Try it on ([https://polite-sfogliatella-58ade3.netlify.app/](https://storenext.netlify.app/))
 
 ## Getting Started
 
