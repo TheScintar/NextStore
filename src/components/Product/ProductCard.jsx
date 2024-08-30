@@ -27,7 +27,7 @@ const ProductCard = ({ category, product }) => {
       </div>
       <div className={styles.productPrice}>
         <p className={styles.price}>${product.price}</p>
-        <div className={styles.mobileCart}>
+        <div className={styles.mobileCart} onClick={handleAddToCart}>
           <Image src={cartIcon} alt="Cart icon" />
         </div>
         <button onClick={handleAddToCart}>Add to Cart</button>

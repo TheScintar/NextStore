@@ -2,54 +2,56 @@
 
 import React, { useState, useEffect } from 'react';
 import Cart from '../../components/Cart/Cart';
-import { auth, db, removeFromCart } from '../../firebase/firebase';
+import { auth, db } from '../../firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const fetchCartItems = async () => {
-      const user = auth.currentUser;
-
-      if (user) {
+    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
         try {
-          const userDocRef = doc(db, 'users', user.uid);
+          const userDocRef = doc(db, 'users', currentUser.uid);
           const userDoc = await getDoc(userDocRef);
 
           if (userDoc.exists()) {
             const userData = userDoc.data();
+            console.log('Fetched cart items:', userData.cart); 
             setCartItems(userData.cart || []);
+          } else {
+            console.log('User document does not exist');
           }
         } catch (error) {
           console.error('Error fetching cart items:', error);
         }
       } else {
         console.log('User is not authenticated');
+        setCartItems([]);
       }
 
       setLoading(false);
-    };
+    });
 
-    fetchCartItems();
+    return () => unsubscribe();
   }, []);
 
   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
 
   const handleRemove = async (productId) => {
     try {
-      // Удаление товара из состояния
       const updatedCartItems = cartItems.filter(item => item.id !== productId);
       setCartItems(updatedCartItems);
 
-      // Обновление базы данных
-      const user = auth.currentUser;
       if (user) {
         const userDocRef = doc(db, 'users', user.uid);
         await updateDoc(userDocRef, {
           cart: updatedCartItems
         });
+        console.log('Updated cart in database:', updatedCartItems); 
       }
     } catch (error) {
       console.error('Error removing item from cart:', error);

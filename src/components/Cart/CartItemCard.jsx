@@ -1,7 +1,7 @@
 // src/components/CartItemCard.jsx
 
 import React from 'react';
-import styles from '../../styles/Product/productCard.module.css'; // Используем те же стили
+import styles from '../../styles/Product/productCard.module.css'; 
 
 const CartItemCard = ({ product, onRemove }) => {
   return (
