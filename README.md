@@ -1,22 +1,21 @@
-## Getting Started
+## Try it on ([https://polite-sfogliatella-58ade3.netlify.app/](https://storenext.netlify.app/))
 
-First, run the development server:
+Online store made using Next.js & React.js & Firebase with the ability to create an account and add products to cart
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Authentication
+  - Sign up
+  - Login
+  - Logout
+- Filters
+- Cart Management
+- User profile page
+- Single Product Page.
+## Tech Stack Used
+- NextJs
+- ReactJS
+- Firebase Auth
+- Firebase Database
 
-You can start editing the page by modifying `app/page.jsx`. The page auto-updates as you edit the file.
-
-=======
-## NextStore
-React.js & Next.js & Firebase
 
