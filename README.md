@@ -12,7 +12,6 @@ Online store made using Next.js & React.js & Firebase with the ability to create
 - Cart Management
 - User profile page
 - Single Product Page.
-- 
 ## Tech Stack Used
 - NextJs
 - ReactJS
