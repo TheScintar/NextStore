@@ -45,7 +45,7 @@ const Category = () => {
   };
 
   const handleApplyFilters = () => {
-    setFiltersIsOpen(false); // Закрытие фильтра
+    setFiltersIsOpen(false); 
   };
 
   return (

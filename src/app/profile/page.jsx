@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import { auth, db } from '../../firebase/firebase';
@@ -17,7 +17,8 @@ const Profile = () => {
     apartment: '',
     zip: ''
   });
-  const [activeComponent, setActiveComponent] = useState('Address')
+  const [activeComponent, setActiveComponent] = useState('Address');
+  const [showNotification, setShowNotification] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -54,6 +55,12 @@ const Profile = () => {
     try {
       const userDocRef = doc(db, 'users', user.uid);
       await updateDoc(userDocRef, { shippingAddress });
+      setShowNotification(true);
+
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+
     } catch (err) {
       setError('Failed to update profile');
       console.error('Error updating profile:', err);
@@ -80,6 +87,7 @@ const Profile = () => {
           shippingAddress={shippingAddress}
           setShippingAddress={setShippingAddress}
           handleUpdateProfile={handleUpdateProfile}
+          showNotification={showNotification}
         />
       ) : (
         <Security

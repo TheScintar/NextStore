@@ -5,7 +5,6 @@ import Image from 'next/image';
 
 const CartItemCard = ({ product, onRemove, onQuantityChange }) => {
   useEffect(() => {
-    // Устанавливаем дефолтное значение 1, если количество еще не установлено
     if (!product.quantity) {
       onQuantityChange(product.id, 1);
     }
@@ -15,14 +14,12 @@ const CartItemCard = ({ product, onRemove, onQuantityChange }) => {
     const newQuantity = parseInt(e.target.value, 10);
     if (newQuantity >= 1) {
       onQuantityChange(product.id, newQuantity);
-      // Сохраняем количество в локальном хранилище
       localStorage.setItem(`cartItem-${product.id}-quantity`, newQuantity);
     }
   };
 
   return (
-      <>
-      <div className={styles.productCard}>
+    <div className={styles.productCard}>
       <div className={styles.productImageAndInfo}>
         <div className={styles.productImage}>
           <img src={product.imageURL} alt={product.title} />
@@ -34,23 +31,21 @@ const CartItemCard = ({ product, onRemove, onQuantityChange }) => {
       </div>
       <div className={styles.productPrice}>
         <div className={styles.quantityControl}>
-
-        <input
-          type="number"
-          id={`quantity-${product.id}`}
-          min="1"
-          value={product.quantity}
-          onChange={handleQuantityChange} />
-      </div>
+          <input
+            type="number"
+            id={`quantity-${product.id}`}
+            min="1"
+            value={product.quantity}
+            onChange={handleQuantityChange}
+          />
+        </div>
         <p className={styles.price}>${(product.price * product.quantity).toFixed(2)}</p>
         <button onClick={() => onRemove(product.id)}>Remove</button>
-        
         <div className={styles.mobileRemove} onClick={() => onRemove(product.id)}>
           <Image src={closeIcon} alt="Close icon" />
         </div>
       </div>
     </div>
-      </>
   );
 };
 

@@ -20,7 +20,6 @@ const CartPage = () => {
 
           if (userDoc.exists()) {
             const userData = userDoc.data();
-            console.log('Fetched cart items:', userData.cart); 
             setCartItems(userData.cart || []);
           } else {
             console.log('User document does not exist');
@@ -39,7 +38,7 @@ const CartPage = () => {
     return () => unsubscribe();
   }, []);
 
-  const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleRemove = async (productId) => {
     try {
@@ -51,10 +50,23 @@ const CartPage = () => {
         await updateDoc(userDocRef, {
           cart: updatedCartItems
         });
-        console.log('Updated cart in database:', updatedCartItems); 
       }
     } catch (error) {
       console.error('Error removing item from cart:', error);
+    }
+  };
+
+  const handleQuantityChange = async (productId, newQuantity) => {
+    const updatedCartItems = cartItems.map(item =>
+      item.id === productId ? { ...item, quantity: newQuantity } : item
+    );
+    setCartItems(updatedCartItems);
+
+    if (user) {
+      const userDocRef = doc(db, 'users', user.uid);
+      await updateDoc(userDocRef, {
+        cart: updatedCartItems
+      });
     }
   };
 
@@ -65,7 +77,7 @@ const CartPage = () => {
   return (
     <div>
       <h1>Cart</h1>
-      <Cart cartItems={cartItems} total={total} onRemove={handleRemove} />
+      <Cart cartItems={cartItems} total={total} onRemove={handleRemove} onQuantityChange={handleQuantityChange} />
     </div>
   );
 };
