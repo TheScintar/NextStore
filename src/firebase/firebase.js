@@ -11,11 +11,9 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Инициализация Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-
 
 export const getProducts = async (category) => {
   console.log(category)
@@ -23,7 +21,6 @@ export const getProducts = async (category) => {
   const productsSnapshot = await getDocs(productsCollection);
   return productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
-
 
 export const getProductById = async (category, productId) => {
   try {
@@ -42,7 +39,6 @@ export const getProductById = async (category, productId) => {
   }
 };
 
-
 export const addToCart = async (product) => {
   const user = auth.currentUser;
 
@@ -50,7 +46,7 @@ export const addToCart = async (product) => {
     try {
       const userDocRef = doc(db, 'users', user.uid);
       await updateDoc(userDocRef, {
-        cart: arrayUnion(product) // Добавляем продукт в массив корзины
+        cart: arrayUnion(product) 
       });
       console.log('Product added to cart');
     } catch (error) {
@@ -67,10 +63,39 @@ export const removeFromCart = async (productId) => {
     try {
       const userDocRef = doc(db, 'users', user.uid);
       await updateDoc(userDocRef, {
-        cart: arrayRemove({ id: productId }) // Удаляем объект с этим id из массива
+        cart: arrayRemove({ id: productId }) 
       });
     } catch (error) {
       console.error('Error removing item from cart:', error);
     }
+  }
+};
+
+
+export const isProductInCart = async (productId) => {
+  const user = auth.currentUser;
+
+  if (user) {
+    try {
+      const userDocRef = doc(db, 'users', user.uid);
+      const userDoc = await getDoc(userDocRef);
+      
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        const cart = userData.cart || [];
+
+        
+        return cart.some(item => item.id === productId);
+      } else {
+        console.log('User document does not exist');
+        return false;
+      }
+    } catch (error) {
+      console.error('Error checking product in cart:', error);
+      return false;
+    }
+  } else {
+    console.log('User is not authenticated');
+    return false;
   }
 };

@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../styles/Product/productCard.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import cartIcon from '../../../public/cart.svg';
-import { addToCart } from '../../firebase/firebase'; // Импортируйте функцию
+import checkMark from '../../../public/checkMark.svg'
+import { addToCart, isProductInCart } from '../../firebase/firebase'; 
 
 const ProductCard = ({ category, product }) => {
+  const [isInCart, setIsInCart] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+
+  useEffect(() => {
+    const checkIfInCart = async () => {
+      const result = await isProductInCart(product.id);
+      setIsInCart(result);
+    };
+    
+    checkIfInCart();
+  }, [product.id]);
+
   const handleAddToCart = () => {
-    addToCart(product); // Используйте функцию
+    if (!isInCart) {
+      addToCart(product);
+      setIsInCart(true);
+      setShowNotification(true);
+    
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -28,10 +49,23 @@ const ProductCard = ({ category, product }) => {
       <div className={styles.productPrice}>
         <p className={styles.price}>${product.price}</p>
         <div className={styles.mobileCart} onClick={handleAddToCart}>
-          <Image src={cartIcon} alt="Cart icon" />
+            {isInCart ? (
+               <Image src={checkMark} className={styles.checkMark} alt="Check mark" />
+            ) : (
+              <Image src={cartIcon} alt="Cart icon" />
+            )}
         </div>
-        <button onClick={handleAddToCart}>Add to Cart</button>
+        {isInCart ? (
+          <button disabled className={styles.inCartButton}>Already in Cart</button>
+        ) : (
+          <button onClick={handleAddToCart}>Add to Cart</button>
+        )}
       </div>
+      {showNotification && (
+        <div className={styles.notification}>
+          Product successfully added to cart!
+        </div>
+      )}
     </div>
   );
 };

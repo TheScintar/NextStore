@@ -110,13 +110,15 @@
   cursor: pointer;
   transition: background-color 0.3s;
   width: 120px;
-  height: 36px;
+  height: 50px;
   display: inline-block;
   text-align: center;
   font-family: "Raleway", sans-serif;
 }
 
+.inCartButton{
 
+}
 
 .productPrice button:hover {
   color: white;
@@ -125,6 +127,36 @@
 .mobileCart{
   display: none;
 }
+
+.notification {
+  position: fixed;
+  top: 20px; /* Устанавливаем позицию сверху */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: slideDown 0.5s ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px); /* Исходное положение чуть выше */
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0); /* Конечное положение */
+  }
+}
+
+.mobileRemove{
+  display: none;
+}
+
 
 @media(max-width: 880px) {
   .productCard {
@@ -184,5 +216,14 @@
     padding: 5px 8px 3px 8px;
     border: 1px solid black;
     border-radius: 5px;
+  }
+
+  .checkMark{
+    width: 25px;
+    height: 25px;
+  }
+
+  .mobileRemove{
+    display: block;
   }
 }
