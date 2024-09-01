@@ -5,6 +5,12 @@
    
 }
 
+.categories{
+    
+    display: flex;
+    
+}
+
 .recommendedProducts {
     margin: 0 auto;
     display: flex;

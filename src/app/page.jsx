@@ -16,11 +16,17 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <nav>
-        <Link href="/category/laptops">Laptops</Link>
-        <Link href="/category/phones">Phones</Link>
-        <Link href="/category/watches">Watches</Link>
-      </nav>
+      <div className={styles.categories}>
+        <div className={styles.category}>
+          <Link href="/category/laptops">Laptops</Link>
+        </div>
+        <div className={styles.category}>
+          <Link href="/category/phones">Phones</Link>
+        </div>
+        <div className={styles.category}>
+          <Link href="/category/watches">Watches</Link>
+        </div>
+      </div>
 
       <h2>Recommended Products</h2>
       <div className={styles.recommendedProducts}>
