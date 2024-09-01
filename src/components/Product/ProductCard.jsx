@@ -57,7 +57,7 @@ const ProductCard = ({ category, product }) => {
         </div>
         {isInCart ? (
           <button disabled className={styles.inCartButton}>Already in Cart</button>
-        ) : (
+        ) : ( 
           <button onClick={handleAddToCart}>Add to Cart</button>
         )}
       </div>

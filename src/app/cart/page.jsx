@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Cart from '../../components/Cart/Cart';
+import styles from '../../styles/Cart/cart.module.css'
 import { auth, db } from '../../firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
@@ -12,6 +13,10 @@ const CartPage = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
+  const metadata = {
+    title: 'Your cart',
+    description: 'Your cart',
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
@@ -78,8 +83,8 @@ const CartPage = () => {
   }
 
   return (
-    <div>
-      <h1>Cart</h1>
+    <div className={styles.mainCart}>
+      <h1>Your Cart</h1>
       <Cart cartItems={cartItems} total={total} onRemove={handleRemove} onQuantityChange={handleQuantityChange} />
     </div>
   );

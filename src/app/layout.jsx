@@ -1,6 +1,10 @@
 import React from 'react';
 import '../styles/global.css'; 
 import Navbar from '../components/Navbar'
+import GithubIcon from '../../public/github.svg'
+import Image from 'next/image';
+import styles from '../styles/mainPage.module.css'
+import Link from 'next/link';
 
 
 export const metadata = {
@@ -25,7 +29,12 @@ const Layout = ({ children }) => {
         </header>
         <main>{children}</main>
         <footer>
-          <p>&copy; 2024 Online Store</p>
+          <p>Uladzislau Tryfanau</p>
+          <div>
+            <Link target='blank' href='https://github.com/TheScintar'>
+            <Image src={GithubIcon} className={styles.icon}/>
+            </Link>
+          </div>
         </footer>
       </body>
     </html>

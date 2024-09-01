@@ -9,10 +9,20 @@ import Link from 'next/link';
 const Category = () => {
   
   return (
-    <div className={styles.container}>
-        <Link href={"/category/laptops"}>Laptops</Link>
-        <Link href={"/category/phones"}>Phones</Link>
-        <Link href={"/category/watches"}>Watches</Link>
+  <div className={styles.container}>
+    <h2>Categories</h2>
+      <div className={styles.categories}>
+        
+        <div className={styles.category}>
+          <Link href="/category/laptops">Laptops</Link>
+        </div>
+        <div className={styles.category}>
+          <Link href="/category/phones">Phones</Link>
+        </div>
+        <div className={styles.category}>
+          <Link href="/category/watches">Watches</Link>
+        </div>
+      </div>
     </div>
   );
 };

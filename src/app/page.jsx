@@ -16,7 +16,9 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
+      <h2>Categories</h2>
       <div className={styles.categories}>
+        
         <div className={styles.category}>
           <Link href="/category/laptops">Laptops</Link>
         </div>

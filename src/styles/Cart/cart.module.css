@@ -1,6 +1,14 @@
 .container{
   display: flex;
 }
+.mainCart h1{
+  text-align: center;
+  margin-top: 0;
+}
+.main{
+  margin: 0;
+  padding: 0;
+}
 
 
 .productsList {
@@ -203,6 +211,10 @@
   
   .mobileQuantityControl{
     display: none;
+  }
+
+  .total{
+    margin-top: 0;
   }
   
   @media(max-width: 880px) {

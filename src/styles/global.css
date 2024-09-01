@@ -24,9 +24,13 @@ main {
 
 
 footer {
-  background-color: #333;
-  color: white;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: lightgray;
+  color: black;
   text-align: center;
-  padding: 10px 0;
+  padding: 10px 15px;
   margin-top: 20px;
 }

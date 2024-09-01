@@ -40,8 +40,8 @@ const Dropdown = ({ onLogout, onClose }) => {
         className={styles.accountButton}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Image src={accountIcon} alt="Account icon" />
-        <Image src={menuDown} alt="Menu down" />
+        <Image src={accountIcon} alt="Account icon"/>
+        <Image src={menuDown} alt="Menu down" className={styles.menuDown}/>
       </button>
 
       {isOpen && (

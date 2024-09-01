@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-align: center;
   margin-top: 0;
   padding: 0;
 }
@@ -113,6 +114,7 @@
     background: none;
     border: none;
     cursor: pointer;
+    margin-left: 37px;
   }
 
   .dropdownItem {
@@ -219,6 +221,13 @@
 
     .dropdownMenu a{
         margin: 0;
+      }
+
+      .accountButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-left: 0px;
       }
 
       

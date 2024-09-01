@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../../styles/Cart/cart.module.css'
 
 
 
@@ -10,7 +11,9 @@ export const metadata = {
 const Layout = ({ children }) => {
   return (
     <>
-    <main>{children}</main>
+    <main className={styles.main}>
+        {children}
+    </main>
     </>
        
   );

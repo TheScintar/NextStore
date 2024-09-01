@@ -6,9 +6,31 @@
 }
 
 .categories{
-    
+    max-width: 500px;
     display: flex;
-    
+    text-decoration: none;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.categories a{
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 120px;
+    display: inline-block;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+}
+
+.categories a:hover{
+    color: white;
+    background-color: black;
 }
 
 .recommendedProducts {
@@ -62,6 +84,26 @@
 .recommendedProductPrice{
     font-family: "Lato", sans-serif;
     font-weight: 900;
+}
+
+.icon{
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+@media(max-width: 485px){
+    .categories{
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        margin: 0 auto;
+        justify-content: space-between;
+    }
+    .categories a{
+        width: 70%;
+        margin-top: 10px;
+    }
 }
 
 @media(max-width: 623px) {
