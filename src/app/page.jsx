@@ -36,9 +36,9 @@ const Home = () => {
           <p>Loading...</p>
         ) : (
           <>
-            {recommendedProducts.map((product) => (
+            {recommendedProducts.map((product)  => (
               
-                <div className={styles.recommendedProductCard}>
+                <div className={styles.recommendedProductCard} key={product.id}>
                   <Link href={`/category/${product.category}/${product.id}`} key={product.id}>
                   <div className={styles.productImage}>
                     {product.imageURL && <img src={product.imageURL} alt={product.title} />}

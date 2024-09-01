@@ -21,6 +21,9 @@
   
   .detailsSection {
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
   
   .title {
@@ -33,14 +36,15 @@
     color: #555;
     margin: 8px 0 0;
     line-height: 1.4;
-    max-height: 60px;
+    overflow: hidden;
   }
 
   .priceAddtoCart{
-    margin-top: 150px;
+    margin-top: px;
     display: flex;
     align-items: center;
     gap: 15px;
+    
   }
   
   .price{

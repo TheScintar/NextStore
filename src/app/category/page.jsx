@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import styles from '../../styles/category.module.css'; 
+import styles from '../../styles/categories.module.css'; 
 
 import Link from 'next/link';
 

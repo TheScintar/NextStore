@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
           <p>Uladzislau Tryfanau</p>
           <div>
             <Link target='blank' href='https://github.com/TheScintar'>
-            <Image src={GithubIcon} className={styles.icon}/>
+            <Image src={GithubIcon} alt="GitHub icon" className={styles.icon}/>
             </Link>
           </div>
         </footer>

@@ -59,8 +59,10 @@ const ProductDetail = () => {
         </div>
       </div>
       <div className={styles.detailsSection}>
+        <div>
         <h1 className={styles.title}>{product.title}</h1>
         <p className={styles.description}>{product.description}</p>
+        </div>
         <div className={styles.priceAddtoCart}>
            <h1 className={styles.price}>
               ${product.price}
