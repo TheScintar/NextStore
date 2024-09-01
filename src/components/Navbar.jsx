@@ -43,7 +43,7 @@ const Navbar = () => {
       <nav className={`${styles.navbar} ${isOpen ? styles.active : ''}`}>
         <div className={styles.menu}>
           <Link href="/">Home</Link>
-          <Link href="/">Test</Link>
+          <Link href="/category">Category</Link>
         </div>
         <div className={styles.logo}>
           <button className={styles.closeButton} onClick={() => setIsOpen(!isOpen)}>
@@ -54,7 +54,7 @@ const Navbar = () => {
 
         <div className={styles.mobileMenu}>
           <Link href="/">Home</Link>
-          <Link href="/">Test</Link>
+          <Link href="/">Category</Link>
         </div>
 
         <div className={styles.auth}>
@@ -64,8 +64,8 @@ const Navbar = () => {
             <Dropdown onLogout={handleLogout} onClose={closeMenu} />
           ) : (
             <>
-              <Link href="/signin"><Image src={accountIcon} alt="Account icon" /></Link>
-              <Link href="/signin">Login</Link>
+              <Link href="/auth"><Image src={accountIcon} alt="Account icon" /></Link>
+              <Link href="/auth">Login</Link>
             </>
           )}
         </div>
@@ -85,7 +85,7 @@ const Navbar = () => {
             <Dropdown onLogout={handleLogout} onClose={closeMenu} />
           ) : (
             <>
-              <Link href="/signin"><Image src={accountIcon} alt="Account icon" /></Link>
+              <Link href="/auth"><Image src={accountIcon} alt="Account icon" /></Link>
             </>
           )}
         </div>

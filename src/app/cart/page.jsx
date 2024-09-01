@@ -5,10 +5,13 @@ import Cart from '../../components/Cart/Cart';
 import { auth, db } from '../../firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
+
+
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {

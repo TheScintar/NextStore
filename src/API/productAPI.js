@@ -1,4 +1,4 @@
-import { getProducts, getProductById } from '../firebase/firebase';
+import { getProducts, getProductById, getAllProductsFromCategories} from '../firebase/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/firebase'; 
 
@@ -20,4 +20,18 @@ export const fetchBrandsFromProducts = async () => {
     });
     return Array.from(brands);
   };
+
+export const fetchRecommendedProducts = async () => {
+  try {
+    const categories = ['laptops', 'watches', 'phones'];
+    const allProducts = await getAllProductsFromCategories(categories);
+
+    const shuffledProducts = allProducts.sort(() => 0.5 - Math.random());
+    const selectedProducts = shuffledProducts.slice(0, 6);
+    
+    return(selectedProducts)
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+};
 

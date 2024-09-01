@@ -16,7 +16,6 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 export const getProducts = async (category) => {
-  console.log(category)
   const productsCollection = collection(db, `${category}`);
   const productsSnapshot = await getDocs(productsCollection);
   return productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -71,7 +70,6 @@ export const removeFromCart = async (productId) => {
   }
 };
 
-
 export const isProductInCart = async (productId) => {
   const user = auth.currentUser;
 
@@ -83,8 +81,6 @@ export const isProductInCart = async (productId) => {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         const cart = userData.cart || [];
-
-        
         return cart.some(item => item.id === productId);
       } else {
         console.log('User document does not exist');
@@ -98,4 +94,17 @@ export const isProductInCart = async (productId) => {
     console.log('User is not authenticated');
     return false;
   }
+};
+
+export const getAllProductsFromCategories = async (categories) => {
+  let allProducts = [];
+
+  for (const category of categories) {
+    const productsCollection = collection(db, category);
+    const productsSnapshot = await getDocs(productsCollection);
+    const products = productsSnapshot.docs.map(doc => ({ id: doc.id, category, ...doc.data() }));
+    allProducts = [...allProducts, ...products];
+  }
+
+  return allProducts;
 };

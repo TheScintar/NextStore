@@ -3,7 +3,10 @@ import '../styles/global.css';
 import Navbar from '../components/Navbar'
 
 
-
+export const metadata = {
+  title: 'NextStore',
+  description: 'Home page of NextStore',
+};
 
 
 

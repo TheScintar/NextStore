@@ -39,10 +39,21 @@ const CartItemCard = ({ product, onRemove, onQuantityChange }) => {
             onChange={handleQuantityChange}
           />
         </div>
+        <div className={styles.productPriceRemove}>
         <p className={styles.price}>${(product.price * product.quantity).toFixed(2)}</p>
         <button onClick={() => onRemove(product.id)}>Remove</button>
         <div className={styles.mobileRemove} onClick={() => onRemove(product.id)}>
           <Image src={closeIcon} alt="Close icon" />
+        </div>
+        </div>
+        <div className={styles.mobileQuantityControl}>
+          <input
+            type="number"
+            id={`quantity-${product.id}`}
+            min="1"
+            value={product.quantity}
+            onChange={handleQuantityChange}
+          />
         </div>
       </div>
     </div>
