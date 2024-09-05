@@ -1,4 +1,4 @@
-## Try it on ([https://storenext.netlify.app/))
+## Try it on (https://storenext.netlify.app/)
 
 Online store made using Next.js & React.js & Firebase with the ability to create an account and add products to cart
 
